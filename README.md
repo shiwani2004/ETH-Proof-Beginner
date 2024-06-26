@@ -32,29 +32,28 @@ This project provides a basic example of how to create a token on the Ethereum b
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity 0.8.18;
 
 contract MyToken {
-    // Public variables here
-    string public tokenName = "wave";
-    string public tokenAbbr = "WAV";
+    // Public variables to store the details about the coin
+    string public tokenName = "META";
+    string public tokenSymbol = "MTA";
     uint public totalSupply = 0;
 
-    // Mapping variable here
-    mapping (address => uint) public balances;
+    // Mapping from addresses to balances
+    mapping(address => uint) public balances;
 
-    // Mint function
-    function mint(address _address, uint _value) public {
-        totalSupply += _value;
-        balances[_address] += _value;
+    // Mint function to create new tokens
+    function mint(address _account, uint _amount) public {
+        totalSupply += _amount;
+        balances[_account] += _amount;
     }
 
-    // Burn function
-    function burn(address _address, uint _value) public {
-        if(balances[_address] >= _value) {
-            totalSupply -= _value;
-            balances[_address] -= _value;
-        }
+    // Burn function to destroy tokens
+    function burn(address _account, uint _amount) public {
+        require(balances[_account] >= _amount, "Insufficient balance to burn");
+        totalSupply -= _amount;
+        balances[_account] -= _amount;
     }
 }
 ```
@@ -71,10 +70,12 @@ If you encounter any issues or have any questions, here are some common solution
 
 Contributors names and contact info
 
-Nitish   
-mail: nitishkumarveer77@gmail.com
+shiwani  
+mail: shivibhagat22@gmail.com
 
 
 ## License
+
+This project is licensed under the [MIT] License - see the LICENSE.md file for details
 
 This project is licensed under the [MIT] License - see the LICENSE.md file for details
